@@ -6,8 +6,6 @@ public class KIraMovementController : MonoBehaviour
     public float vertical;
     public float speed;
 
-    public float vida;
-    public float puntos;
     public float turnSmooth = 0.1f;
     public float turnsmoothVelocity;
     public Transform cam;
@@ -29,9 +27,6 @@ public class KIraMovementController : MonoBehaviour
 
     public Animator animator;
 
-    //Yo agreguue
-    public float Contador = 5;
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -44,9 +39,6 @@ public class KIraMovementController : MonoBehaviour
     {
         Salto();
         Movimiento();
-		ContadorparasumarVida();
-		VidaRecuperacionAutomatica();
-        
     }
 
     void Movimiento()
@@ -111,51 +103,7 @@ public class KIraMovementController : MonoBehaviour
         Controller.Move(velocity * Time.deltaTime);
     }
 
-public void OnCollisionEnter(Collision collision)
-    {
-        if (collision.transform.tag == "Muerte")
-        {
-            vida = vida - 2000f;
-            if (vida == 0f)
-            {
-                Debug.Log("MORISTE");
-            }
-        }
-        if (collision.transform.tag == "COIN")
-        {
-            puntos = puntos + 1;
-            Destroy(collision.transform.gameObject);
-        }
-        if (collision.transform.tag == "TRAMPAS")
-        {
-            vida = vida - 10f;
-            Debug.Log("Estás perdiendo vida");
 
-        }
-    }
 
-    public void VidaRecuperacionAutomatica()
-    {
 
-		if (vida >= 51 && Contador <=0.01f)
-		{
-            vida = vida + 1;
-
-            if (vida >= 100)
-			{
-                vida = 100;
-			}
-		}
-
-	}
-
-    public void ContadorparasumarVida()
-    {
-        Contador = Contador - Time.deltaTime;
-
-        if (Contador <= 0)
-        {
-            Contador = 5;        
-        }
-    }
 }
