@@ -48,6 +48,25 @@ public class EnemyNavMesh : MonoBehaviour
 		//MovimientoNaveMesh();
 	}
 
+
+	public void OnTriggerStay(Collider other)
+	{
+		if (other.transform.tag == "PointerA")
+		{
+			RadioABool = true;
+		}
+
+		if (other.transform.tag == "PointerB")
+		{
+			RadioABool = false;
+		}
+	}
+
+
+
+
+
+
 	void MovimientoNaveMesh()
 	{
 		FaceTarget();
@@ -87,6 +106,10 @@ public class EnemyNavMesh : MonoBehaviour
 	}
 
 
+	
+
+
+
 	void MovimientoAB()
 	{
 		distanciaB = Vector3.Distance(PointerA.position, transform.position);
@@ -98,7 +121,7 @@ public class EnemyNavMesh : MonoBehaviour
 			Agent.SetDestination(PointerB.position);
 			//AnimatorEnemy.SetBool("Atacar", false);
 			Agent.speed = 10f;
-			RadioABool = false;
+			
 
 		}
 		if (distanciaB >= RadioB && RadioABool==false)
@@ -107,23 +130,10 @@ public class EnemyNavMesh : MonoBehaviour
 			FaceTargetA();
 			Agent.SetDestination(PointerA.position);
 			Agent.speed = 10f;
-			RadioABool = true;
+		
 
 		}
 
-	}
-
-	public void OnTriggerEnter(Collider other)
-	{
-		if (other.transform.tag == "PointerA")
-		{
-			RadioABool = true;
-		}
-
-		if (other.transform.tag == "PointerA")
-		{
-			RadioABool = false;
-		}
 	}
 
 
