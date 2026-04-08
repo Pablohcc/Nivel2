@@ -6,6 +6,10 @@ TagManager:
   tags:
   - PointerA
   - PointerB
+  - TRAMPAS
+  - FxTemporaire
+  - Suelo
+  - Lava
   layers:
   - Default
   - TransparentFX

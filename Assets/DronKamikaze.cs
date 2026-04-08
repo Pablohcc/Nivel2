@@ -54,18 +54,7 @@ public class DronKamikaze : MonoBehaviour
         }
     }
 
-	public void OnCollisionEnter(Collision collision)
-	{
-		if (collision.transform.tag== "Player")
-		{
-            ExplosionDron();
-		}
-
-		if (collision.transform.tag=="Player")
-		{
-            Destroy(gameObject);
-		}
-	}
+ 
 
 
 
@@ -74,6 +63,11 @@ public class DronKamikaze : MonoBehaviour
 		Instantiate(ExplosionPartiicula, TransformPlayer.transform.position, TransformPlayer.transform.rotation);
 
 	}
+
+    public void ExplosionDronSuperficie()
+    { 
+        Instantiate(ExplosionPartiicula, transform.position, transform.rotation);
+    }
 
 
 
@@ -118,7 +112,29 @@ public class DronKamikaze : MonoBehaviour
             } */
             Destroy(gameObject);
         }
-    }
+
+
+		if (otro.transform.tag == "Player")
+		{
+			ExplosionDron();
+		}
+
+		if (otro.transform.tag == "Player")
+		{
+			Destroy(gameObject);
+		}
+
+		if (otro.transform.tag== "Suelo")
+		{
+            ExplosionDronSuperficie();
+		}
+
+		if (otro.transform.tag=="Suelo")
+		{
+            Destroy(gameObject);
+		}
+
+	}
     
 
     void OnDrawGizmosSelected()

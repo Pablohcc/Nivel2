@@ -68,17 +68,39 @@ public void OnCollisionEnter(Collision collision)
             puntos = puntos + 1;
             Destroy(collision.transform.gameObject);
         }
-        if (collision.transform.tag == "TRAMPAS")
+		/*if (collision.transform.tag == "TRAMPAS")
         {
             vidaActual = vidaActual - 10;
             Debug.Log("Estás perdiendo vida");
 
         }
-    }
+        */
+
+		if (collision.transform.tag=="Lava")
+		{
+            vidaActual = 0;
+            Destroy(gameObject);
+		}
+
+	}
+
+	public void OnTriggerEnter(Collider other)
+	{
+		if (other.transform.tag== "TRAMPAS")
+		{
+            vidaActual = vidaActual - 15;
+		}
+
+		if (other.transform.tag=="Lava")
+		{
+            vidaActual = 0;
+            //Destroy (gameObject);
+		}
+	}
 
 
-    ///Cronometro para que cada 5 segundos se recupere 1 punto de vida
-    public void Cronometro()
+	///Cronometro para que cada 5 segundos se recupere 1 punto de vida
+	public void Cronometro()
     {
         cronometro = cronometro - Time.deltaTime;
 
