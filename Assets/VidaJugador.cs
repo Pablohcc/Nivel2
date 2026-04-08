@@ -5,12 +5,33 @@ public class VidaJugador : MonoBehaviour
     public int vidaMaxima = 100;
     public int vidaActual;
     public float puntos;
+
+    public float cronometro = 3;
     void Start()
     {
         vidaActual = vidaMaxima;
-    }
 
-    public void RecibirDanio(int cantidad)
+        
+
+	}
+
+	void Update()
+	{
+		   Cronometro();
+
+		if (vidaActual >= 50 && vidaActual <=99 && cronometro<= -0.09f)
+		{
+			RecuperacionVida();
+		}
+		else
+		{
+			VidaMaximaObtenida();
+		}
+		
+       
+	}
+
+	public void RecibirDanio(int cantidad)
     {
         vidaActual -= cantidad;
         vidaActual = Mathf.Clamp(vidaActual, 0, vidaMaxima);
@@ -54,4 +75,38 @@ public void OnCollisionEnter(Collision collision)
 
         }
     }
+
+
+    ///Cronometro para que cada 5 segundos se recupere 1 punto de vida
+    public void Cronometro()
+    {
+        cronometro = cronometro - Time.deltaTime;
+
+		if (cronometro <= -0.1f)
+		{
+            cronometro = 3f;
+		}
+	}
+
+
+    ///Funcion de Recuperación de Vida
+    public void RecuperacionVida()
+    {
+		
+            vidaActual = vidaActual + 1;
+		
+	}
+
+
+    ///Esta Funcion es para que cuando la vida llega a 100, no se pase de alli
+    public void VidaMaximaObtenida()
+    {
+		if (vidaActual >= vidaMaxima)
+		{
+            vidaActual = vidaMaxima;
+		}
+
+	}
+
+    
 }

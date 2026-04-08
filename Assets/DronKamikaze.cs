@@ -14,6 +14,10 @@ public class DronKamikaze : MonoBehaviour
     [Header("Daño")]
     public int danioAlContacto = 15;
 
+    [Header("Explosion")]
+    public Transform TransformPlayer;
+    public GameObject ExplosionPartiicula;
+
     private float _alturaInicial;
     [SerializeField] private bool _persiguiendo = false;
 
@@ -50,7 +54,32 @@ public class DronKamikaze : MonoBehaviour
         }
     }
 
-    void Flotar()
+	public void OnCollisionEnter(Collision collision)
+	{
+		if (collision.transform.tag== "Player")
+		{
+            ExplosionDron();
+		}
+
+		if (collision.transform.tag=="Player")
+		{
+            Destroy(gameObject);
+		}
+	}
+
+
+
+    public void ExplosionDron()
+    {
+		Instantiate(ExplosionPartiicula, TransformPlayer.transform.position, TransformPlayer.transform.rotation);
+
+	}
+
+
+
+
+
+	void Flotar()
     {
         float nuevaY = _alturaInicial + Mathf.Sin(Time.time * velocidadFlotacion) * alturaFlotacion;
         transform.position = new Vector3(transform.position.x, nuevaY, transform.position.z);
@@ -82,14 +111,15 @@ public class DronKamikaze : MonoBehaviour
     {
         if (otro.CompareTag("Player"))
         {
-            VidaJugador vida = otro.GetComponent<VidaJugador>();
+           /* VidaJugador vida = otro.GetComponent<VidaJugador>();
             if (vida != null)
             {
                 vida.RecibirDanio(danioAlContacto);
-            }
+            } */
             Destroy(gameObject);
         }
     }
+    
 
     void OnDrawGizmosSelected()
     {
