@@ -10,6 +10,10 @@ TagManager:
   - FxTemporaire
   - Suelo
   - Lava
+  - PointerA1
+  - PointerA2
+  - PointerA2Verdadero
+  - PointerB2
   layers:
   - Default
   - TransparentFX

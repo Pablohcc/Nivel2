@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyNavMesh : MonoBehaviour
+public class EnemyNevMesh2 : MonoBehaviour
 {
 	public float RadioMira;
 	public Transform PointerPlayer;
@@ -51,14 +51,14 @@ public class EnemyNavMesh : MonoBehaviour
 
 	public void OnTriggerEnter(Collider other)
 	{
-		if (other.transform.tag == "PointerA")
+		if (other.transform.tag == "PointerA2Verdadero")
 		{
 			Agent.acceleration = 60;
 			RadioABool = false;
 			RadioBBool = true;
 		}
 
-		if (other.transform.tag == "PointerB")
+		if (other.transform.tag == "PointerB2")
 		{
 			Agent.acceleration = 8;
 			RadioABool = true;
@@ -70,7 +70,7 @@ public class EnemyNavMesh : MonoBehaviour
 
 	public void OnTriggerExit(Collider other)
 	{
-		
+
 	}
 
 
@@ -125,7 +125,7 @@ public class EnemyNavMesh : MonoBehaviour
 	{
 		distanciaB = Vector3.Distance(PointerA.position, transform.position);
 
-		if  (RadioABool==true) //(distanciaB <= RadioA && RadioABool == true)
+		if (RadioABool == true) //(distanciaB <= RadioA && RadioABool == true)
 		{
 			Agent.angularSpeed = 300f;
 			FaceTargetB();
@@ -135,7 +135,7 @@ public class EnemyNavMesh : MonoBehaviour
 
 
 		}
-		if (RadioBBool==true) //(distanciaB <= RadioB && RadioABool == false)
+		if (RadioBBool == true) //(distanciaB <= RadioB && RadioABool == false)
 		{
 			Agent.angularSpeed = 300f;
 			FaceTargetA();

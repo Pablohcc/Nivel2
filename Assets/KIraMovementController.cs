@@ -30,6 +30,7 @@ public class KIraMovementController : MonoBehaviour
     public VidaJugador VidaJugadorScript;
 
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -46,7 +47,7 @@ public class KIraMovementController : MonoBehaviour
             Movimiento();
         }
         ///En esta condicional se puede agregar una animacion de muerte
-		if (VidaJugadorScript.vidaActual == 0)
+		if (VidaJugadorScript.vidaActual <= 0)
 		{
 			//Destroy(gameObject);
 		}
