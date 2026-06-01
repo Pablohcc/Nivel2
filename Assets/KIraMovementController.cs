@@ -1,10 +1,13 @@
 using UnityEngine;
+//using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class KIraMovementController : MonoBehaviour
 {
     public float horizontal;
     public float vertical;
+    public float Vertical;
     public float speed;
+    public Transform Cam;
 
     public float turnSmooth = 0.1f;
     public float turnsmoothVelocity;
@@ -25,6 +28,10 @@ public class KIraMovementController : MonoBehaviour
     public bool IsJump;
     public bool IsLand;
 
+    public float TurnSmooth = 0.1f;
+    public float TurnSmoothVelocity;
+
+
     public Animator animator;
 
     public VidaJugador VidaJugadorScript;
@@ -44,14 +51,15 @@ public class KIraMovementController : MonoBehaviour
         if (VidaJugadorScript.vidaActual >= 1)
         {
             Salto();
+            //MovimientoconControler();
             Movimiento();
         }
         ///En esta condicional se puede agregar una animacion de muerte
 		if (VidaJugadorScript.vidaActual <= 0)
-		{
-			//Destroy(gameObject);
-		}
-	}
+        {
+            //Destroy(gameObject);
+        }
+    }
 
     void Movimiento()
     {
@@ -116,6 +124,37 @@ public class KIraMovementController : MonoBehaviour
     }
 
 
+    public void MovimientoconControlerTereraPersona()
+    {
+        horizontal = Input.GetAxis("Horizontal");
+        Vertical = Input.GetAxis("Vertical");
+
+        Vector3 direction = new Vector3(horizontal, 0, Vertical);
+        float Magnitud = Mathf.Clamp01(direction.magnitude); ///convierte los numeros entre los rangos 0 y 1
+                                                             ///detectar el rango entre 0 y 1.
+
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
+            Magnitud /= 0.5f;
+        }
+        animator.SetFloat("InputMagnitude", Magnitud, 0.05f, Time.deltaTime);
 
 
+        if (direction.magnitude >= 0.1f)
+        {
+            float TargetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Cam.eulerAngles.y;  ///Encontrando el Angulo entre X y Z
+			float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, TargetAngle, ref TurnSmooth, TurnSmoothVelocity);
+
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);  ///Con el Angulo encontrado le digo al player que gire 
+
+            Vector3 MoveDirection = Quaternion.Euler(0f, TargetAngle, 0f) * Vector3.forward;
+
+            Controller.Move(MoveDirection * speed * Time.deltaTime);
+        }
+
+
+
+
+
+    }
 }

@@ -22,6 +22,7 @@ public class EnemyNavMeshA1 : MonoBehaviour
 	void Start()
 
 	{
+		PointerPlayer = GameObject.FindGameObjectWithTag("Player").transform;
 		AnimatorEnemy = GetComponentInChildren<Animator>();
 	}
 

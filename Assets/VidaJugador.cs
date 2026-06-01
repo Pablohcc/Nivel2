@@ -96,6 +96,14 @@ public void OnCollisionEnter(Collision collision)
             vidaActual = 0;
             //Destroy (gameObject);
 		}
+
+        if(other.transform.CompareTag("Bala"))
+        {
+            TakeDamage(10);
+            Destroy(other.transform.gameObject);
+        }
+
+        
 	}
 
 
@@ -130,5 +138,15 @@ public void OnCollisionEnter(Collision collision)
 
 	}
 
-    
+	public void TakeDamage(int daño)
+	{
+		vidaActual -= daño;
+
+		if (vidaActual <= 0f)
+		{
+			Destroy(gameObject);
+		}
+	}
+
+
 }

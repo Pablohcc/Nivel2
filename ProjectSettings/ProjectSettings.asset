@@ -142,7 +142,8 @@ PlayerSettings:
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
   bundleVersion: 0.1.0
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -936,11 +937,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 452cfc55-30c0-438a-898e-6646f8edcebe
+  cloudProjectId: 18b066f7-c558-430f-a001-c1e65a142021
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: DevilFall
-  organizationId: aweonaoultra
+  projectName: Nivel 2
+  organizationId: pablohcc7007
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

@@ -2161,7 +2161,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7673487251499248760}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2acf757537ee6864aabcd2323ae4ecf0, type: 3}
   m_Name: 
@@ -2171,6 +2171,14 @@ MonoBehaviour:
   Agent: {fileID: 0}
   RadioDisparo: 0
   AnimatorEnemy: {fileID: 0}
+  PointerA: {fileID: 0}
+  PointerB: {fileID: 0}
+  RadioA: 0
+  RadioB: 0
+  distancia: 0
+  distanciaB: 0
+  Entrar: 0
+  Player: {fileID: 0}
 --- !u!1 &7673487251499248762
 GameObject:
   m_ObjectHideFlags: 0
